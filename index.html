@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>Jokes</title>
+    <script src="data.js"></script>
+    <script>
+        window.onload = () => {
+            //Math.random = () => { return 0.9; };
+            idx = Math.floor(Math.random() * (json.length - 1));
+            document.getElementById('title-text').innerHTML = json[idx].title;
+            document.getElementById('body-text').innerHTML = json[idx].body.replace(/\n/g, '<br>');
+            document.getElementById('title').onclick = () => {
+                document.getElementById('click-text').innerHTML = '';
+                if (document.getElementById('body').style.display == 'block') {
+                    document.getElementById('body').style.display = '';
+                } else {
+                    document.getElementById('body').style.display = 'block';
+                }
+            };
+        };
+    </script>
+    <style>
+        #title {
+            font-size: 20pt;
+            cursor: pointer;
+            user-select: none;
+        }
+        #click-text, #reload-text {
+            font-weight: 100;
+            color: hsl(0, 0%, 46%);
+        }
+        #body {
+            display: none;
+            font-size: 16pt;
+            user-select: none;
+        }
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        #wrap {
+            margin: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h3 id="title">
+            <span id="title-text">Loading...</span>
+            <span id="click-text">(Click here)</span>
+        </h3>
+        <p id="body">
+            <span id="body-text">Loading...</span>
+            <br>
+            <br>
+            <span id="reload-text">(Reload for more)</span>
+        </p>
+    </div>
+</body>
+</html>
